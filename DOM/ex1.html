@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<body>
+    <style>
+        .area{
+            background-color: #9b73f8;
+            width: 50px;
+            height: 20px;
+            text-align: center;
+        }
+    </style>
+    <div class="area" onmouseenter="entrar()" onmouseout="sair()">
+        Olá
+    </div>
+    <script>
+        var teste = document.querySelector(".area");
+        teste.addEventListener("click", click);
+        function entrar() {
+            teste.innerHTML = "Entrou!"
+        }
+        function sair() {
+            teste.innerHTML = "Saiu!"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Calculadora de Churrasco</title>
+</head>
+
+<body>
+    <h1 class="titulo">Churras!</h1>
+    <p>Esse é um código feito para auxiliar na divisão dos gastos com um churrasco.</p>
+    <div class="pessoasGramas">
+        <div>
+            <p>Informe a quantidade de pessoas:</p>
+            <input id="pessoas" type="text" class="input">
+        </div>
+        <div>
+            <p>Informe a quantidade de gramas por pessoa:</p>
+            <input id="quantidade" type="text" class="input">
+        </div>
+    </div>
+    <div class="tipoPreco">
+        <div>
+            <p>Informe o tipo de carne:</p>
+            <input id="carne" type="text" class="input">
+        </div>
+        <div>
+            <p>Informe o preço por Kg da carne:</p>
+            <input id="preco" type="text" class="input">
+        </div>
+    </div>
+    <p id="total"></p>
+    <br>
+    <button onclick="calcular()" class="botao">Calcular</button>
+    <script>
+        function calcular() {
+            var pessoas = Number(document.getElementById("pessoas").value);
+            var quantidade = Number(document.getElementById("quantidade").value);
+            var carne = document.getElementById("carne").value;
+            var preco = Number(document.getElementById("preco").value);
+            var aumento = 1.0;
+
+            if (pessoas > 10) {
+                aumento = 1.10;
+            }
+
+            var quantidadeDeCarne = (pessoas * quantidade) / 1000;
+            var total = quantidadeDeCarne * preco * aumento;
+
+            document.getElementById("total").innerHTML = "Para o churrasco de " + pessoas + " pessoas, você vai precisar de " + quantidadeDeCarne.toFixed(2) + " kg de carne do tipo " + carne + ". O custo total será de R$" + total.toFixed(2) + ".";
+        }
+    </script>
+</body>
+
+</html>
+
+</html>

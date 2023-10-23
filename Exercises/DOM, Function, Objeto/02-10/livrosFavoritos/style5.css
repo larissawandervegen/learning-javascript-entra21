@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lato:wght@400&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin-top: 2%;
+    margin-left: 2%;
+    background-color: #d6c6e9;
+    background-image: url(./assets/belo-arranjo-de-diferentes-livros.jpg);
+    background-size:cover;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    gap: 2em;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+}
+
+.titulo{
+    color: #ab79e7;
+    font-size: 5rem;
+    font-family: 'Dancing Script', cursive;
+
+}
+
+.subtitulo{
+    color: #ab79e7;
+    font-size: 4rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+p{
+    font-size: 1.5rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Lato', sans-serif;
+}
+
+.tituloLivro {
+    display: flex;
+    flex-direction: column;
+}
+
+.autor {
+    display: flex;
+    flex-direction: column;
+}
+
+.ano {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtrarLivro {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Lato', sans-serif;
+}
+
+input{
+    border: 1px solid #ab79e7;
+    height: 40px;
+    border-radius: 8px;
+    background: #ab79e7;
+    width: 250px;
+    text-align: center;
+}
+
+.botao{
+    border: 1px solid #ab79e7;
+    background-color: #ab79e7 ;
+    width: 300px;
+    height: 50px;
+    padding: 5px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+}
+
+.botao:hover{
+    background-color: #9e52fa ;
+}
