@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="submit" id="bt">Pesquisar</button>
+    <table id="tabela">
+        <thead>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Fone</th>
+        </thead>
+    </table>
+
+    <Script>
+        var botao = document.getElementById("bt");
+        botao.addEventListener("click", clicar);
+        function clicar() {
+            fetch('http://localhost:3000/clientes')
+                .then((resp) => resp.json())
+                .then((data) => {
+                    data.forEach((pessoa) => {
+                        let tab = document.getElementById("tabela");
+                        let corpo = document.createElement("tr");
+                        let colunaId = document.createElement("td");
+                        colunaId.innerHTML = pessoa.id;
+
+                        let colunaNome = document.createElement("td");
+                        colunaNome.innerHTML = pessoa.nome;
+
+                        let colunaEmail = document.createElement("td");
+                        colunaEmail.innerHTML = pessoa.email;
+
+                        let colunaFone = document.createElement("td");
+                        colunaFone.innerHTML = pessoa.fone;
+
+                        tab.appendChild(corpo);
+                        corpo.appendChild(colunaId);
+                        corpo.appendChild(colunaNome);
+                        corpo.appendChild(colunaEmail);
+                        corpo.appendChild(colunaFone);
+                    });
+                })
+                .catch(erro => console.error(erro));
+        }
+    </Script>
+</body>
+
+</html>

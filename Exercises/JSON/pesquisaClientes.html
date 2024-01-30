@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Pesquisar clientes</title>
+</head>
+
+<body>
+    <div class="texto">
+        <h1>Fetch API</h1>
+        <p>Esse é um código de utilização de metódos Fetch</p>
+    </div>
+
+    <button type="submit" id="bt" class="btn btn-primary">Pesquisar</button>
+    <button type="submit" id="btAdd" class="btn btn-primary">Adicionar</button>
+    <button type="submit" id="btDel" class="btn btn-primary">Deletar</button>
+
+    <table id="tabela" class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Fone</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tabela-body"></tbody>
+    </table>
+
+    <Script>
+        var botao = document.getElementById("bt");
+        botao.addEventListener("click", clicar);
+        function clicar() {
+            fetch('http://localhost:3000/clientes')
+                .then((resp) => resp.json())
+                .then((data) => {
+                    data.forEach((pessoa) => {
+                        let tbody = document.getElementById("tabela-body");
+                        let corpo = document.createElement("tr");
+
+                        let colunaId = document.createElement("td");
+                        colunaId.innerHTML = pessoa.id;
+
+                        let colunaNome = document.createElement("td");
+                        colunaNome.innerHTML = pessoa.nome;
+
+                        let colunaEmail = document.createElement("td");
+                        colunaEmail.innerHTML = pessoa.email;
+
+                        let colunaFone = document.createElement("td");
+                        colunaFone.innerHTML = pessoa.fone;
+
+                        let colunaEditar = document.createElement("td");
+                        let editarLink = document.createElement("button");
+                        editarLink.classList.add("btn", "btn-primary");
+                        editarLink.addEventListener = ("click", editar => document.location.href = "editarClientes.html");
+                        editarLink.textContent = "Editar";
+                        colunaEditar.appendChild(editarLink);
+
+                        tbody.appendChild(corpo);
+                        corpo.appendChild(colunaId);
+                        corpo.appendChild(colunaNome);
+                        corpo.appendChild(colunaEmail);
+                        corpo.appendChild(colunaFone);
+                        corpo.appendChild(colunaEditar);
+                    });
+                })
+                .catch(erro => console.error(erro));
+        }
+        var botaoDel = document.getElementById("btDel");
+        botaoDel.addEventListener("click", deletar);
+        function deletar() {
+            var idCliente = window.prompt("Qual o ID do cliente que deseja excluir?")
+            fetch(`http://localhost:3000/clientes/${idCliente}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Cliente excluído com sucesso.');
+                    } else {
+                        throw new Error(`Erro ao excluir: ${response.status}`)
+                    }
+                })
+                .catch(error => console.error('Erro ao excluir cliente:', error));
+        }
+        var botaoAdd = document.getElementById("btAdd");
+        botaoAdd.addEventListener("click", adicionar);
+        function adicionar() {
+            document.location.href = "addClientes.html"
+        }
+    </Script>
+</body>
+
+</html>
