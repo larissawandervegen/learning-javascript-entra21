@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar clientes</title>
+</head>
+
+<body>
+    <div class="texto">
+        <h1>Adicionar cliente</h1>
+    </div>
+    <label>Id</label>
+    <input type="text" id="idCliente">
+    <label>Nome</label>
+    <input type="text" id="nomeCliente">
+    <label>E-mail</label>
+    <input type="email" id="emailCliente">
+    <label>Telefone</label>
+    <input type="tel" id="telCliente">
+    <button id="button">Adicionar</button>
+
+    <Script>
+        var botao = document.getElementById("button");
+        botao.addEventListener("click", adicionar);
+
+        function adicionar() {
+            var objCliente = {
+                id: document.getElementById("idCliente").value,
+                nome: document.getElementById("nomeCliente").value,
+                email: document.getElementById("emailCliente").value,
+                fone: document.getElementById("telCliente").value
+            };
+            console.log(objCliente);
+            fetch('http://localhost:3000/clientes', {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(objCliente)
+            })
+                .then(response => response.json())
+                .then(dados => {
+                    document.location.href = "pesquisaClientes.html";
+                })
+                .catch (error => console.error('Erro ao adicionar cliente: ', error));
+        };
+    </Script>
+</body>
+
+</html>
